@@ -229,4 +229,7 @@ INSERT INTO `countries` VALUES (2, 'Hungary');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
-```
+
+SELECT name,preference from aplicants inner join country on aplicants.id = country.id where age < 30 AND country = "Hungary"
+update aplicants inner join country on aplicants.id = country.id set preference = "unknown" where preference = "Python"
+select country,AVG(age) as avgage from aplicants inner join country on aplicants.id = country.id  where country = ("Czech Republic","Hungary") group by country
