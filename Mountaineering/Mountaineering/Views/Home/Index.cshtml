@@ -1,0 +1,66 @@
+﻿@model Mountaineering.Models.ViewModels.IndexViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mountaineering</title>
+</head>
+<body>
+    <h1>Mountaineering</h1>
+    <h2>Climbers overview</h2>
+    <table style="width:100%">
+        <tr>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>Mountain</th>
+            <th>Altitude</th>
+            <th>Injured</th>
+        </tr>
+        @foreach (var item in Model.Climbers)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Nation</td>
+                <td><a href="~/mountains/@item.Mountain.Id">@item.Mountain.Name</a></td>
+                <td>@item.CurrentAltitude</td>
+                <td>@item.IsInjured</td>
+            </tr>
+        }
+    </table>
+    <h2>Climb a mountain</h2>
+    <form method="post" action="Climbed">
+        <label>Climber:</label>
+        <select name="name">
+            <option value=""> </option>
+            @foreach (var item in Model.Climbers)
+            {
+                if (item.IsInjured == true)
+                {
+                }
+                else
+                {
+                    <option value="@item.Name">@item.Name</option>
+                }
+            }
+        </select>
+        <label for="dist">Distance:</label>
+        <input id="dist" name="altitude" />
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Add new Climber</h2>
+    <form method="post" action="Climbers">
+        <label for="climber-name">Name:</label>
+        <input id="climber-name" name="name" />
+        <label for="climber-nation">Nationality:</label>
+        <input id="climber-nation" name="nation" />
+        <label for="currmoutain">Moutain:</label>
+        <select id="currmoutain" name="mountain">
+            <option value=""> </option>
+            @foreach (var item in Model.Mountains)
+            {
+                <option value="@item.Name">@item.Name</option>
+            }
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

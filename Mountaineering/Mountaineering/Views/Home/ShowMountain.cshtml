@@ -1,0 +1,30 @@
+﻿@model Mountaineering.Models.ViewModels.IndexViewModel
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mountain</title>
+</head>
+<body>
+
+    <h1>
+        @Model.Mountain.Name - @Model.Mountain.Height meters (@Model.Level.)
+    </h1>
+    <p>Peak first reached:@Model.Mountain.FirstClimb</p>
+    <table style="width:100%">
+        <tr>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>Altitude</th>
+            <th>Injured</th>
+        </tr>
+        @foreach (var item in Model.Mountain.CurrClimbers)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Nation</td>
+                <td>@item.CurrentAltitude</td>
+                <td>@item.IsInjured</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
